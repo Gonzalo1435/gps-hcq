@@ -1,0 +1,76 @@
+GPS HOSPITAL DE CAUQUENES (GPS HCQ) — CÓMO USAR E INSTALAR LA APP
+===================================================================
+
+Esta carpeta "app" es la aplicación completa. No necesita internet ni
+instalar programas: todo (planos, red de pasillos, nombres SIC) viene adentro.
+
+  index.html ............ la aplicación (ábrela con doble clic para probar)
+  planos\  tiles\ ....... imágenes de los planos (6 niveles, nítidas al acercar)
+  datos\proyecto.json ... respaldo de la red de pasillos y recintos
+  icons\ manifest.webmanifest sw.js ... lo que la convierte en "app instalable"
+  servir.bat ............ enciende un servidor local en este PC (ver punto 2)
+
+La app abre en MODO FÁCIL (botones grandes, 3 pantallas: ¿Dónde estás? →
+¿A dónde vas? → un paso a la vez). Con el botón "Modo completo" (arriba a la
+derecha) aparece el buscador de todos los recintos, los pisos y el modo técnico.
+Atajos por enlace:  index.html?modo=facil   |  index.html?modo=completo
+                    index.html?desde=n1_acc_pri   (origen fijo, ideal para un QR
+                    pegado en esa entrada; el código puede ser el SIC del recinto)
+
+
+1) USARLA EN ESTE PC SIN INSTALAR NADA
+--------------------------------------
+Doble clic en index.html. Funciona sin internet. Se puede copiar la carpeta
+completa a un pendrive o a otro PC y abrirla igual.
+
+
+2) VERLA DESDE CELULARES EN LA MISMA RED (prueba rápida)
+-------------------------------------------------------
+Doble clic en servir.bat (necesita tener Python instalado en el PC; si no lo
+tiene, el .bat lo avisa). Se abre http://localhost:8080 en este PC y, desde un
+celular conectado al mismo wifi, se entra con http://IP-DE-ESTE-PC:8080
+(el .bat muestra la IP). Sirve para probar con pacientes y funcionarios.
+Mientras la ventana negra esté abierta, la app está disponible.
+
+
+3) INSTALARLA COMO APP EN CELULARES Y PC (ícono propio, funciona sin señal)
+---------------------------------------------------------------------------
+Para que el celular ofrezca "Instalar app" / "Agregar a pantalla de inicio",
+la carpeta tiene que estar publicada en una dirección HTTPS (requisito de los
+navegadores, no de esta app). Dos caminos:
+
+  a) Intranet del hospital / Servicio de Salud: pedir a Informática que
+     publique la carpeta "app" tal cual en un servidor web con HTTPS
+     (IIS, Apache o nginx; es solo contenido estático, sin base de datos).
+     Ejemplo: https://intranet.hospitalcauquenes.cl/gps/
+
+  b) Un hosting estático gratuito con HTTPS (GitHub Pages, Netlify,
+     Cloudflare Pages): se sube la carpeta y queda en una dirección pública.
+     Ojo: los planos quedan visibles para cualquiera que tenga el enlace,
+     igual que con el visor actual de claude.ai.
+
+Con la dirección HTTPS lista:
+  - Android (Chrome): aparece el botón "Instalar app" en la barra superior de
+    la app, o en el menú ⋮ de Chrome → "Instalar aplicación".
+  - iPhone/iPad (Safari): botón Compartir (cuadrado con flecha) →
+    "Agregar a pantalla de inicio". La app lo recuerda con un aviso la 1ª vez.
+  - Windows (Chrome o Edge): ícono de instalar en la barra de direcciones →
+    queda en el menú Inicio como un programa, con su propia ventana.
+  Una vez instalada funciona sin internet (los planos se guardan en el equipo).
+
+Conviene imprimir un código QR con esa dirección (o con ?desde=... de cada
+acceso) y pegarlo en el hall, Urgencia y los accesos.
+
+
+4) ACTUALIZAR LA APP
+--------------------
+Cuando se corrige la red de pasillos (editor en claude.ai → "Exportar JSON")
+se reemplaza esta carpeta por la nueva versión. En los celulares instalados
+la app se actualiza sola la próxima vez que se abra con internet.
+
+
+5) ¿Y UNA APP DE LA TIENDA (Play Store / APK)?
+----------------------------------------------
+Es posible envolver esta misma dirección HTTPS en un APK (herramienta
+PWABuilder, gratuita). Requiere primero el punto 3 y una cuenta de
+desarrollador para publicar en la tienda; para uso interno basta el APK.
