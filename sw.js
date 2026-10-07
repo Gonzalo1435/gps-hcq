@@ -1,8 +1,8 @@
 /* GPS HCQ — service worker: deja la app disponible sin internet una vez abierta.
    Sube el número de VERSION cada vez que se publique una versión nueva de index.html. */
-const VERSION = 'gps-hcq-v16';
+const VERSION = 'gps-hcq-v17';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png'];
-const PLANOS = ['./planos/S1.jpg', './planos/N1.jpg', './planos/N2.jpg', './planos/N3.jpg', './planos/S2.jpg', './planos/NC.jpg'];
+const PLANOS = ['./planos/S1.jpg', './planos/N1.jpg', './planos/N2.jpg', './planos/N3.jpg', './planos/S2.jpg', './planos/NC.jpg', './planos/EX.jpg'];
 
 self.addEventListener('install', e => {
   e.waitUntil((async () => {
